@@ -157,8 +157,6 @@ var map = new google.maps.Map(document.getElementById("map"), {
   ],
 });
 
-
-
 // Create an array of marker objects
 var markers = [
   new google.maps.Marker({
@@ -693,7 +691,7 @@ var markers = [
       "Bakı-Aeroport yolunun sağ tərəfində, Sabunçu dairəsi yaxınlığında Tel:450-04-52",
     map: map,
     description: "7s Saylı YDM",
-    category: "Kafe, LPG,  EV charger, Avtoservis, Market, Kontaktsız avtoyuma",
+    category: "Kafe, LPG, Ev Charger, Avtoservis, Market, Kontaktsız avtoyuma",
     icon: {
       url: "data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='74' height='119' viewBox='0 0 74 119'><path d='M29.85 17.53C29.85 48.95 3.53003 54.83 3.53003 85.03C3.53003 96.82 10.96 107.03 19.73 108.25C19.09 106.1 18.88 104.44 18.88 102.12C18.88 80.32 53.92 73.56 53.92 36.38C53.92 18.6 41.38 3.57 26.75 0C26.75 0 29.84 9.65 29.84 17.52L29.85 17.53Z' fill='%23FF2F2B'/><path d='M27.6299 103.44C27.6299 109.61 31.9999 116.18 37.6999 118.32C37.3999 117.41 37.2599 116.61 37.2599 115.27C37.2599 103.12 73.1999 99.2499 73.1999 67.4999C73.1999 58.7199 69.5299 49.1899 62.2599 42.9399C57.3399 79.0299 27.6299 83.9999 27.6299 103.44Z' fill='%236EC248'/><path d='M8.8 10.08C8.8 10.08 10.53 13.19 10.53 16.66C10.53 27.81 0 32.06 0 43.39C0 48.74 2.91 53.13 7.02 55.68C7.13 54.71 7.23 53.8 7.48 53.04C9.94 45.17 21.48 36.46 21.48 24.11C21.48 16.71 15.34 10.62 8.8 10.08Z' fill='%2333ADE1'/></svg>",
       scaledSize: new google.maps.Size(40, 40),
@@ -722,7 +720,7 @@ var markers = [
       "Bakı ş-ri, Suraxanı r-nu, Yeni Suraxanı Qəsəbəsi, Bakı-Aeroport yolu, 7-ci km, 1 Tel:458-92-43",
     map: map,
     description: "7s Saylı YDM",
-    category: "Kafe, LPG,  EV charger, Avtoservis",
+    category: "Kafe, LPG,  Ev Charger, Avtoservis",
     icon: {
       url: "data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='74' height='119' viewBox='0 0 74 119'><path d='M29.85 17.53C29.85 48.95 3.53003 54.83 3.53003 85.03C3.53003 96.82 10.96 107.03 19.73 108.25C19.09 106.1 18.88 104.44 18.88 102.12C18.88 80.32 53.92 73.56 53.92 36.38C53.92 18.6 41.38 3.57 26.75 0C26.75 0 29.84 9.65 29.84 17.52L29.85 17.53Z' fill='%23FF2F2B'/><path d='M27.6299 103.44C27.6299 109.61 31.9999 116.18 37.6999 118.32C37.3999 117.41 37.2599 116.61 37.2599 115.27C37.2599 103.12 73.1999 99.2499 73.1999 67.4999C73.1999 58.7199 69.5299 49.1899 62.2599 42.9399C57.3399 79.0299 27.6299 83.9999 27.6299 103.44Z' fill='%236EC248'/><path d='M8.8 10.08C8.8 10.08 10.53 13.19 10.53 16.66C10.53 27.81 0 32.06 0 43.39C0 48.74 2.91 53.13 7.02 55.68C7.13 54.71 7.23 53.8 7.48 53.04C9.94 45.17 21.48 36.46 21.48 24.11C21.48 16.71 15.34 10.62 8.8 10.08Z' fill='%2333ADE1'/></svg>",
       scaledSize: new google.maps.Size(40, 40),
@@ -791,7 +789,6 @@ function addAllSidebarContent(actMarkers) {
                   <p>${marker.description}</p>
                   <p>${marker.category}</p>
                   <hr>
-
   </div>
 `
     )
@@ -860,10 +857,8 @@ backSidebar.addEventListener("click", function back() {
   map.panTo({ lat: 40.143105, lng: 47.576927 });
 });
 
-// Add click event listeners to each marker
 activeMarkers.forEach(function (marker) {
   marker.addListener("click", function () {
-    // Reset the icon of the previously selected marker
     if (selectedMarker !== null) {
       selectedMarker.setIcon(svgIcon);
     }
@@ -875,7 +870,6 @@ activeMarkers.forEach(function (marker) {
       marker.setAnimation(null);
     }, 1500);
 
-    // Set the selected marker to the clicked marker
     selectedMarker = marker;
 
     let sidebarContent = "";
@@ -907,33 +901,19 @@ window.onclick = function (event) {
   }
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var select = document.getElementById("my-select");
 select.addEventListener("change", function () {
   var selectedCategory = this.value;
   console.log(selectedCategory);
   markers.forEach(function (marker) {
     console.log(marker.category);
-    if (selectedCategory === "all" || marker.category.toLowerCase().trim().includes(selectedCategory.toLowerCase())) {
+    if (
+      selectedCategory === "all" ||
+      marker.category
+        .toLowerCase()
+        .trim()
+        .includes(selectedCategory.toLowerCase())
+    ) {
       marker.setMap(map);
     } else {
       marker.setMap(null);
@@ -943,9 +923,6 @@ select.addEventListener("change", function () {
   activeMarkers = markers.filter(function (marker) {
     return marker.map !== null && marker.map !== undefined;
   });
-  console.log(activeMarkers);
   groupMarkers(activeMarkers);
   addAllSidebarContent(activeMarkers);
 });
-
-

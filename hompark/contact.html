@@ -346,20 +346,23 @@
           </div>
         </div>
 
-        <div class="row align-items-center" style="gap: 4rem">
+        <div class="row align-items-center">
+          <div class="select-options-map" style="display: flex;
+          justify-content: end;">
+            <select id="my-select" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="width: 27%;">
+              <option value="all" selected> Filter Hamısı</option>
+              <option value="Ev Charger">Ev Charger</option>
+              <option value="Avtoservis">Avtoservis</option>
+              <option value="CNG">CNG</option>
+              <option value="Kafe">Kafe</option>
+              <option value="Kontaktsız Avtoyuma">Kontaktsız Avtoyuma</option>
+              <option value="LPG">LPG</option>
+              <option value="Market">Market</option>
+              <option value="Motel">Motel</option>
+              <option value="Ultra High Speed Diesel Dispenser">Ultra High Speed Diesel Dispenser</option>
+            </select>
+          </div>
           <div class="col-lg-12">
-              <select id="my-select" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="width: 32%;">
-                <option value="all" selected> Filter Hamısı</option>
-                <option value="evCharger">Ev Charger</option>
-                <option value="avtoServis">Avtoservis</option>
-                <option value="CNG">CNG</option>
-                <option value="Kafe">Kafe</option>
-                <option value="KAvtoyuma">Kontaktsız Avtoyuma</option>
-                <option value="LPG">LPG</option>
-                <option value="Market">Market</option>
-                <option value="Motel">Motel</option>
-                <option value="UltraHighSpeed">Ultra High Speed Diesel Dispenser</option>
-              </select>
             
             <div class="map-sidebar">
               
@@ -384,85 +387,86 @@
               </div>
             </div>
           </div>
-
-          <div class="col-lg-6">
-            <div class="contact-form">
-              <form id="contact" name="contact" method="post">
-                <div class="form-group">
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    autocomplete="off"
-                    required
-                  />
-                  <span>Your name</span>
+              <div class="form-map" style="margin-top: 3rem;">
+                <div class="col-lg-6">
+                  <div class="contact-form">
+                    <form id="contact" name="contact" method="post">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="name"
+                          id="name"
+                          autocomplete="off"
+                          required
+                        />
+                        <span>Your name</span>
+                      </div>
+                      <!-- end form-group -->
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="email"
+                          id="email"
+                          autocomplete="off"
+                          required
+                        />
+                        <span>Your e-mail</span>
+                      </div>
+                      <!-- end form-group -->
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="subject"
+                          id="subject"
+                          autocomplete="off"
+                          required
+                        />
+                        <span>Subject</span>
+                      </div>
+                      <!-- end form-group -->
+                      <div class="form-group">
+                        <textarea
+                          name="message"
+                          id="message"
+                          autocomplete="off"
+                          required
+                        ></textarea>
+                        <span>Your message</span>
+                      </div>
+                      <!-- end form-group -->
+                      <div class="form-group">
+                        <button id="submit" type="submit" name="submit">
+                          Submit
+                        </button>
+                      </div>
+                      <!-- end form-group -->
+                    </form>
+                    <!-- end form -->
+                    <div class="form-group">
+                      <div
+                        id="success"
+                        class="alert alert-success wow fadeInUp"
+                        role="alert"
+                      >
+                        Your message was sent successfully! We will be in touch as
+                        soon as we can.
+                      </div>
+                      <!-- end success -->
+                      <div
+                        id="error"
+                        class="alert alert-danger wow fadeInUp"
+                        role="alert"
+                      >
+                        Something went wrong, try refreshing and submitting the form
+                        again.
+                      </div>
+                      <!-- end error -->
+                    </div>
+                    <!-- end form-group -->
+                  </div>
+                  <!-- end contact-form -->
                 </div>
-                <!-- end form-group -->
-                <div class="form-group">
-                  <input
-                    type="text"
-                    name="email"
-                    id="email"
-                    autocomplete="off"
-                    required
-                  />
-                  <span>Your e-mail</span>
-                </div>
-                <!-- end form-group -->
-                <div class="form-group">
-                  <input
-                    type="text"
-                    name="subject"
-                    id="subject"
-                    autocomplete="off"
-                    required
-                  />
-                  <span>Subject</span>
-                </div>
-                <!-- end form-group -->
-                <div class="form-group">
-                  <textarea
-                    name="message"
-                    id="message"
-                    autocomplete="off"
-                    required
-                  ></textarea>
-                  <span>Your message</span>
-                </div>
-                <!-- end form-group -->
-                <div class="form-group">
-                  <button id="submit" type="submit" name="submit">
-                    Submit
-                  </button>
-                </div>
-                <!-- end form-group -->
-              </form>
-              <!-- end form -->
-              <div class="form-group">
-                <div
-                  id="success"
-                  class="alert alert-success wow fadeInUp"
-                  role="alert"
-                >
-                  Your message was sent successfully! We will be in touch as
-                  soon as we can.
-                </div>
-                <!-- end success -->
-                <div
-                  id="error"
-                  class="alert alert-danger wow fadeInUp"
-                  role="alert"
-                >
-                  Something went wrong, try refreshing and submitting the form
-                  again.
-                </div>
-                <!-- end error -->
               </div>
-              <!-- end form-group -->
-            </div>
-            <!-- end contact-form -->
-          </div>
         </div>
         <!-- end row -->
       </div>
