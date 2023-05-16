@@ -156,7 +156,6 @@ var map = new google.maps.Map(document.getElementById("map"), {
   ],
 });
 
-// Create an array of marker objects
 var markers = [
   new google.maps.Marker({
     id: 1,
