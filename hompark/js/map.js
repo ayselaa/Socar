@@ -763,9 +763,10 @@ google.maps.event.addListener(map, "zoom_changed", function () {
   var zoomLevel = map.getZoom();
   if (zoomLevel < 10) {
     groupMarkers(activeMarkers);
-  } else {
-    addAllSidebarContent(activeMarkers);
-  }
+  } 
+  // else {
+  //   addAllSidebarContent(activeMarkers);
+  // }
 });
 
 function groupMarkers(groupMarkers) {
@@ -848,10 +849,11 @@ function clickSideBarItems() {
     });
   });
 }
+
 clickSideBarItems();
 
 backSidebar.addEventListener("click", function back() {
-  addAllSidebarContent();
+  addAllSidebarContent(activeMarkers);
   clickSideBarItems();
   map.setZoom(7);
   map.panTo({ lat: 40.143105, lng: 47.576927 });
@@ -925,4 +927,5 @@ select.addEventListener("change", function () {
   });
   groupMarkers(activeMarkers);
   addAllSidebarContent(activeMarkers);
+  clickSideBarItems();
 });
