@@ -157,7 +157,7 @@ var map = new google.maps.Map(document.getElementById("map"), {
   ],
 });
 
-let activeMarkers = [];
+
 
 // Create an array of marker objects
 var markers = [
@@ -757,6 +757,8 @@ let markerCluster = new MarkerClusterer(map, markers, {
   ],
 });
 
+let activeMarkers = markers;
+
 let backSidebar = document.getElementById("back-icon");
 
 google.maps.event.addListener(map, "zoom_changed", function () {
@@ -764,7 +766,7 @@ google.maps.event.addListener(map, "zoom_changed", function () {
   if (zoomLevel < 10) {
     groupMarkers(activeMarkers);
   } else {
-    addAllSidebarContent();
+    addAllSidebarContent(activeMarkers);
   }
 });
 
@@ -859,7 +861,7 @@ backSidebar.addEventListener("click", function back() {
 });
 
 // Add click event listeners to each marker
-markers.forEach(function (marker) {
+activeMarkers.forEach(function (marker) {
   marker.addListener("click", function () {
     // Reset the icon of the previously selected marker
     if (selectedMarker !== null) {
