@@ -1,7 +1,6 @@
 var map = new google.maps.Map(document.getElementById("map"), {
   center: { lat: 40.143105, lng: 47.576927 },
   zoom: 7,
-  maxZoom: 15,
   minZoom: 7,
   styles: [
     {
