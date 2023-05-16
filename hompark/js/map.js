@@ -902,16 +902,14 @@ window.onclick = function (event) {
   }
 };
 
-  //FILTER
 var select = document.getElementById("my-select");
 select.addEventListener("change", function() {
   var selectedCategory = this.value;
-  var valuesu = selectedCategory !== "" ? selectedCategory : "all";
-  console.log(valuesu);
+  
   for (var i = 0; i < markers.length; i++) {
     var marker = markers[i];
     
-    if (valuesu === "all" || marker.category.split(',').indexOf(valuesu) > -1) {
+    if (selectedCategory === "all" || marker.category.split(',').indexOf(selectedCategory) > -1) {
       marker.setVisible(true);
     } else {
       marker.setVisible(false);
