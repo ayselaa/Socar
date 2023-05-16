@@ -797,7 +797,6 @@ function addAllSidebarContent(actMarkers) {
   sidebar.innerHTML = sidebarContent;
   backSidebar.style.display = "none";
 }
-
 addAllSidebarContent(markers);
 var selectedMarker = null;
 
@@ -849,7 +848,6 @@ function clickSideBarItems() {
     });
   });
 }
-
 clickSideBarItems();
 
 backSidebar.addEventListener("click", function back() {
@@ -857,6 +855,31 @@ backSidebar.addEventListener("click", function back() {
   clickSideBarItems();
   map.setZoom(7);
   map.panTo({ lat: 40.143105, lng: 47.576927 });
+
+  // Clear the current marker cluster
+  markerCluster.clearMarkers();
+
+  // Recreate the marker cluster with the filtered markers
+  markerCluster = new MarkerClusterer(map, activeMarkers, {
+    imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+    styles: [
+      {
+        textColor: "white",
+        textSize: 16,
+        url: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m1.png",
+        height: 53,
+        width: 53,
+      },
+      {
+        textColor: "white",
+        textSize: 16,
+        url: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m2.png",
+        height: 56,
+        width: 56,
+      },
+    ],
+  });
+  
 });
 
 activeMarkers.forEach(function (marker) {
