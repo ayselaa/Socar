@@ -157,6 +157,8 @@ var map = new google.maps.Map(document.getElementById("map"), {
   ],
 });
 
+let activeMarkers = [];
+
 // Create an array of marker objects
 var markers = [
   new google.maps.Marker({
@@ -165,7 +167,7 @@ var markers = [
     title: "Sumqayıt şəhəri, 10-cu mikrorayon, Babək küçəsi 208.",
     map: map,
     description: "11i Saylı YDM",
-    category:"",
+    category: "",
     icon: {
       url: "data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='74' height='119' viewBox='0 0 74 119'><path d='M29.85 17.53C29.85 48.95 3.53003 54.83 3.53003 85.03C3.53003 96.82 10.96 107.03 19.73 108.25C19.09 106.1 18.88 104.44 18.88 102.12C18.88 80.32 53.92 73.56 53.92 36.38C53.92 18.6 41.38 3.57 26.75 0C26.75 0 29.84 9.65 29.84 17.52L29.85 17.53Z' fill='%23FF2F2B'/><path d='M27.6299 103.44C27.6299 109.61 31.9999 116.18 37.6999 118.32C37.3999 117.41 37.2599 116.61 37.2599 115.27C37.2599 103.12 73.1999 99.2499 73.1999 67.4999C73.1999 58.7199 69.5299 49.1899 62.2599 42.9399C57.3399 79.0299 27.6299 83.9999 27.6299 103.44Z' fill='%236EC248'/><path d='M8.8 10.08C8.8 10.08 10.53 13.19 10.53 16.66C10.53 27.81 0 32.06 0 43.39C0 48.74 2.91 53.13 7.02 55.68C7.13 54.71 7.23 53.8 7.48 53.04C9.94 45.17 21.48 36.46 21.48 24.11C21.48 16.71 15.34 10.62 8.8 10.08Z' fill='%2333ADE1'/></svg>",
       scaledSize: new google.maps.Size(40, 40),
@@ -179,7 +181,7 @@ var markers = [
     title: "Şuşa şəhəri",
     map: map,
     description: "7s Saylı YDM",
-    category:"",
+    category: "",
     icon: {
       url: "data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='74' height='119' viewBox='0 0 74 119'><path d='M29.85 17.53C29.85 48.95 3.53003 54.83 3.53003 85.03C3.53003 96.82 10.96 107.03 19.73 108.25C19.09 106.1 18.88 104.44 18.88 102.12C18.88 80.32 53.92 73.56 53.92 36.38C53.92 18.6 41.38 3.57 26.75 0C26.75 0 29.84 9.65 29.84 17.52L29.85 17.53Z' fill='%23FF2F2B'/><path d='M27.6299 103.44C27.6299 109.61 31.9999 116.18 37.6999 118.32C37.3999 117.41 37.2599 116.61 37.2599 115.27C37.2599 103.12 73.1999 99.2499 73.1999 67.4999C73.1999 58.7199 69.5299 49.1899 62.2599 42.9399C57.3399 79.0299 27.6299 83.9999 27.6299 103.44Z' fill='%236EC248'/><path d='M8.8 10.08C8.8 10.08 10.53 13.19 10.53 16.66C10.53 27.81 0 32.06 0 43.39C0 48.74 2.91 53.13 7.02 55.68C7.13 54.71 7.23 53.8 7.48 53.04C9.94 45.17 21.48 36.46 21.48 24.11C21.48 16.71 15.34 10.62 8.8 10.08Z' fill='%2333ADE1'/></svg>",
       scaledSize: new google.maps.Size(40, 40),
@@ -194,7 +196,7 @@ var markers = [
       "Qusar rayonu, Qusar-Laza yolunun 29-cu km-də yerləşən Şahdağ Turizm Mərkəzinin ərazisi",
     map: map,
     description: "6s Saylı YDM",
-    category:"",
+    category: "",
     icon: {
       url: "data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='74' height='119' viewBox='0 0 74 119'><path d='M29.85 17.53C29.85 48.95 3.53003 54.83 3.53003 85.03C3.53003 96.82 10.96 107.03 19.73 108.25C19.09 106.1 18.88 104.44 18.88 102.12C18.88 80.32 53.92 73.56 53.92 36.38C53.92 18.6 41.38 3.57 26.75 0C26.75 0 29.84 9.65 29.84 17.52L29.85 17.53Z' fill='%23FF2F2B'/><path d='M27.6299 103.44C27.6299 109.61 31.9999 116.18 37.6999 118.32C37.3999 117.41 37.2599 116.61 37.2599 115.27C37.2599 103.12 73.1999 99.2499 73.1999 67.4999C73.1999 58.7199 69.5299 49.1899 62.2599 42.9399C57.3399 79.0299 27.6299 83.9999 27.6299 103.44Z' fill='%236EC248'/><path d='M8.8 10.08C8.8 10.08 10.53 13.19 10.53 16.66C10.53 27.81 0 32.06 0 43.39C0 48.74 2.91 53.13 7.02 55.68C7.13 54.71 7.23 53.8 7.48 53.04C9.94 45.17 21.48 36.46 21.48 24.11C21.48 16.71 15.34 10.62 8.8 10.08Z' fill='%2333ADE1'/></svg>",
       scaledSize: new google.maps.Size(40, 40),
@@ -209,7 +211,7 @@ var markers = [
       "Bakı şəhəri, Binəqədi rayonu, Binəqədi qəsəbəsinin şimal hissəsi, Binəqədi – Novxanı yolu.",
     map: map,
     description: "20 Saylı YDM",
-    category:"",
+    category: "",
     icon: {
       url: "data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='74' height='119' viewBox='0 0 74 119'><path d='M29.85 17.53C29.85 48.95 3.53003 54.83 3.53003 85.03C3.53003 96.82 10.96 107.03 19.73 108.25C19.09 106.1 18.88 104.44 18.88 102.12C18.88 80.32 53.92 73.56 53.92 36.38C53.92 18.6 41.38 3.57 26.75 0C26.75 0 29.84 9.65 29.84 17.52L29.85 17.53Z' fill='%23FF2F2B'/><path d='M27.6299 103.44C27.6299 109.61 31.9999 116.18 37.6999 118.32C37.3999 117.41 37.2599 116.61 37.2599 115.27C37.2599 103.12 73.1999 99.2499 73.1999 67.4999C73.1999 58.7199 69.5299 49.1899 62.2599 42.9399C57.3399 79.0299 27.6299 83.9999 27.6299 103.44Z' fill='%236EC248'/><path d='M8.8 10.08C8.8 10.08 10.53 13.19 10.53 16.66C10.53 27.81 0 32.06 0 43.39C0 48.74 2.91 53.13 7.02 55.68C7.13 54.71 7.23 53.8 7.48 53.04C9.94 45.17 21.48 36.46 21.48 24.11C21.48 16.71 15.34 10.62 8.8 10.08Z' fill='%2333ADE1'/></svg>",
       scaledSize: new google.maps.Size(40, 40),
@@ -223,7 +225,7 @@ var markers = [
     title: "Lerik rayonu, Piran kəndi, 20-ci km.",
     map: map,
     description: "7s Saylı YDM",
-    category:"",
+    category: "",
     icon: {
       url: "data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='74' height='119' viewBox='0 0 74 119'><path d='M29.85 17.53C29.85 48.95 3.53003 54.83 3.53003 85.03C3.53003 96.82 10.96 107.03 19.73 108.25C19.09 106.1 18.88 104.44 18.88 102.12C18.88 80.32 53.92 73.56 53.92 36.38C53.92 18.6 41.38 3.57 26.75 0C26.75 0 29.84 9.65 29.84 17.52L29.85 17.53Z' fill='%23FF2F2B'/><path d='M27.6299 103.44C27.6299 109.61 31.9999 116.18 37.6999 118.32C37.3999 117.41 37.2599 116.61 37.2599 115.27C37.2599 103.12 73.1999 99.2499 73.1999 67.4999C73.1999 58.7199 69.5299 49.1899 62.2599 42.9399C57.3399 79.0299 27.6299 83.9999 27.6299 103.44Z' fill='%236EC248'/><path d='M8.8 10.08C8.8 10.08 10.53 13.19 10.53 16.66C10.53 27.81 0 32.06 0 43.39C0 48.74 2.91 53.13 7.02 55.68C7.13 54.71 7.23 53.8 7.48 53.04C9.94 45.17 21.48 36.46 21.48 24.11C21.48 16.71 15.34 10.62 8.8 10.08Z' fill='%2333ADE1'/></svg>",
       scaledSize: new google.maps.Size(40, 40),
@@ -237,7 +239,7 @@ var markers = [
     title: "Salyan rayonu, Salyan şəhəri, Ələt-Astara yolu, 19-cu km.",
     map: map,
     description: "7s Saylı YDM",
-    category:"",
+    category: "",
     icon: {
       url: "data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='74' height='119' viewBox='0 0 74 119'><path d='M29.85 17.53C29.85 48.95 3.53003 54.83 3.53003 85.03C3.53003 96.82 10.96 107.03 19.73 108.25C19.09 106.1 18.88 104.44 18.88 102.12C18.88 80.32 53.92 73.56 53.92 36.38C53.92 18.6 41.38 3.57 26.75 0C26.75 0 29.84 9.65 29.84 17.52L29.85 17.53Z' fill='%23FF2F2B'/><path d='M27.6299 103.44C27.6299 109.61 31.9999 116.18 37.6999 118.32C37.3999 117.41 37.2599 116.61 37.2599 115.27C37.2599 103.12 73.1999 99.2499 73.1999 67.4999C73.1999 58.7199 69.5299 49.1899 62.2599 42.9399C57.3399 79.0299 27.6299 83.9999 27.6299 103.44Z' fill='%236EC248'/><path d='M8.8 10.08C8.8 10.08 10.53 13.19 10.53 16.66C10.53 27.81 0 32.06 0 43.39C0 48.74 2.91 53.13 7.02 55.68C7.13 54.71 7.23 53.8 7.48 53.04C9.94 45.17 21.48 36.46 21.48 24.11C21.48 16.71 15.34 10.62 8.8 10.08Z' fill='%2333ADE1'/></svg>",
       scaledSize: new google.maps.Size(40, 40),
@@ -252,7 +254,7 @@ var markers = [
       "Bakı şəhəri, Biləcəri qəsəbəsi, Sumqayıt şosesi, 2-ci km. 4 ünvanında, Dövlət Yol Polis İdarəsinə məxsus ekologiya postu yaxınlığında",
     map: map,
     description: "7s Saylı YDM",
-    category:"",
+    category: "",
     icon: {
       url: "data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='74' height='119' viewBox='0 0 74 119'><path d='M29.85 17.53C29.85 48.95 3.53003 54.83 3.53003 85.03C3.53003 96.82 10.96 107.03 19.73 108.25C19.09 106.1 18.88 104.44 18.88 102.12C18.88 80.32 53.92 73.56 53.92 36.38C53.92 18.6 41.38 3.57 26.75 0C26.75 0 29.84 9.65 29.84 17.52L29.85 17.53Z' fill='%23FF2F2B'/><path d='M27.6299 103.44C27.6299 109.61 31.9999 116.18 37.6999 118.32C37.3999 117.41 37.2599 116.61 37.2599 115.27C37.2599 103.12 73.1999 99.2499 73.1999 67.4999C73.1999 58.7199 69.5299 49.1899 62.2599 42.9399C57.3399 79.0299 27.6299 83.9999 27.6299 103.44Z' fill='%236EC248'/><path d='M8.8 10.08C8.8 10.08 10.53 13.19 10.53 16.66C10.53 27.81 0 32.06 0 43.39C0 48.74 2.91 53.13 7.02 55.68C7.13 54.71 7.23 53.8 7.48 53.04C9.94 45.17 21.48 36.46 21.48 24.11C21.48 16.71 15.34 10.62 8.8 10.08Z' fill='%2333ADE1'/></svg>",
       scaledSize: new google.maps.Size(40, 40),
@@ -267,7 +269,7 @@ var markers = [
       "Gürcüstan-Qazax-Bakı magistralının üzərində - Goranboy rayonunun Boluslu kəndi ərazisi",
     map: map,
     description: "7s Saylı YDM",
-    category:"",
+    category: "",
     icon: {
       url: "data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='74' height='119' viewBox='0 0 74 119'><path d='M29.85 17.53C29.85 48.95 3.53003 54.83 3.53003 85.03C3.53003 96.82 10.96 107.03 19.73 108.25C19.09 106.1 18.88 104.44 18.88 102.12C18.88 80.32 53.92 73.56 53.92 36.38C53.92 18.6 41.38 3.57 26.75 0C26.75 0 29.84 9.65 29.84 17.52L29.85 17.53Z' fill='%23FF2F2B'/><path d='M27.6299 103.44C27.6299 109.61 31.9999 116.18 37.6999 118.32C37.3999 117.41 37.2599 116.61 37.2599 115.27C37.2599 103.12 73.1999 99.2499 73.1999 67.4999C73.1999 58.7199 69.5299 49.1899 62.2599 42.9399C57.3399 79.0299 27.6299 83.9999 27.6299 103.44Z' fill='%236EC248'/><path d='M8.8 10.08C8.8 10.08 10.53 13.19 10.53 16.66C10.53 27.81 0 32.06 0 43.39C0 48.74 2.91 53.13 7.02 55.68C7.13 54.71 7.23 53.8 7.48 53.04C9.94 45.17 21.48 36.46 21.48 24.11C21.48 16.71 15.34 10.62 8.8 10.08Z' fill='%2333ADE1'/></svg>",
       scaledSize: new google.maps.Size(40, 40),
@@ -282,7 +284,7 @@ var markers = [
       "Yevlax-Zaqatala yolu istiqaməti, Şəki şəhərinin sonuncu kəndi sayılan Çayqaraqoyunlu kəndi ərazisi",
     map: map,
     description: "7s Saylı YDM",
-    category:"",
+    category: "",
     icon: {
       url: "data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='74' height='119' viewBox='0 0 74 119'><path d='M29.85 17.53C29.85 48.95 3.53003 54.83 3.53003 85.03C3.53003 96.82 10.96 107.03 19.73 108.25C19.09 106.1 18.88 104.44 18.88 102.12C18.88 80.32 53.92 73.56 53.92 36.38C53.92 18.6 41.38 3.57 26.75 0C26.75 0 29.84 9.65 29.84 17.52L29.85 17.53Z' fill='%23FF2F2B'/><path d='M27.6299 103.44C27.6299 109.61 31.9999 116.18 37.6999 118.32C37.3999 117.41 37.2599 116.61 37.2599 115.27C37.2599 103.12 73.1999 99.2499 73.1999 67.4999C73.1999 58.7199 69.5299 49.1899 62.2599 42.9399C57.3399 79.0299 27.6299 83.9999 27.6299 103.44Z' fill='%236EC248'/><path d='M8.8 10.08C8.8 10.08 10.53 13.19 10.53 16.66C10.53 27.81 0 32.06 0 43.39C0 48.74 2.91 53.13 7.02 55.68C7.13 54.71 7.23 53.8 7.48 53.04C9.94 45.17 21.48 36.46 21.48 24.11C21.48 16.71 15.34 10.62 8.8 10.08Z' fill='%2333ADE1'/></svg>",
       scaledSize: new google.maps.Size(40, 40),
@@ -395,7 +397,7 @@ var markers = [
     title: "Şamaxı rayonu, Sabir qəsəbəsi",
     map: map,
     description: "7s Saylı YDM",
-    category:"",
+    category: "",
     icon: {
       url: "data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='74' height='119' viewBox='0 0 74 119'><path d='M29.85 17.53C29.85 48.95 3.53003 54.83 3.53003 85.03C3.53003 96.82 10.96 107.03 19.73 108.25C19.09 106.1 18.88 104.44 18.88 102.12C18.88 80.32 53.92 73.56 53.92 36.38C53.92 18.6 41.38 3.57 26.75 0C26.75 0 29.84 9.65 29.84 17.52L29.85 17.53Z' fill='%23FF2F2B'/><path d='M27.6299 103.44C27.6299 109.61 31.9999 116.18 37.6999 118.32C37.3999 117.41 37.2599 116.61 37.2599 115.27C37.2599 103.12 73.1999 99.2499 73.1999 67.4999C73.1999 58.7199 69.5299 49.1899 62.2599 42.9399C57.3399 79.0299 27.6299 83.9999 27.6299 103.44Z' fill='%236EC248'/><path d='M8.8 10.08C8.8 10.08 10.53 13.19 10.53 16.66C10.53 27.81 0 32.06 0 43.39C0 48.74 2.91 53.13 7.02 55.68C7.13 54.71 7.23 53.8 7.48 53.04C9.94 45.17 21.48 36.46 21.48 24.11C21.48 16.71 15.34 10.62 8.8 10.08Z' fill='%2333ADE1'/></svg>",
       scaledSize: new google.maps.Size(40, 40),
@@ -558,7 +560,6 @@ var markers = [
     description: "7s Saylı YDM",
     category:
       "Kafe, LPG, Avtoservis, Market, Motel, Ultra High speed Diesel Dispenser",
-    category: "",
     icon: {
       url: "data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='74' height='119' viewBox='0 0 74 119'><path d='M29.85 17.53C29.85 48.95 3.53003 54.83 3.53003 85.03C3.53003 96.82 10.96 107.03 19.73 108.25C19.09 106.1 18.88 104.44 18.88 102.12C18.88 80.32 53.92 73.56 53.92 36.38C53.92 18.6 41.38 3.57 26.75 0C26.75 0 29.84 9.65 29.84 17.52L29.85 17.53Z' fill='%23FF2F2B'/><path d='M27.6299 103.44C27.6299 109.61 31.9999 116.18 37.6999 118.32C37.3999 117.41 37.2599 116.61 37.2599 115.27C37.2599 103.12 73.1999 99.2499 73.1999 67.4999C73.1999 58.7199 69.5299 49.1899 62.2599 42.9399C57.3399 79.0299 27.6299 83.9999 27.6299 103.44Z' fill='%236EC248'/><path d='M8.8 10.08C8.8 10.08 10.53 13.19 10.53 16.66C10.53 27.81 0 32.06 0 43.39C0 48.74 2.91 53.13 7.02 55.68C7.13 54.71 7.23 53.8 7.48 53.04C9.94 45.17 21.48 36.46 21.48 24.11C21.48 16.71 15.34 10.62 8.8 10.08Z' fill='%2333ADE1'/></svg>",
       scaledSize: new google.maps.Size(40, 40),
@@ -730,6 +731,7 @@ var markers = [
     },
   }),
 ];
+
 let markerCluster = new MarkerClusterer(map, markers, {
   gridSize: 50,
   maxZoom: 15,
@@ -760,24 +762,24 @@ let backSidebar = document.getElementById("back-icon");
 google.maps.event.addListener(map, "zoom_changed", function () {
   var zoomLevel = map.getZoom();
   if (zoomLevel < 10) {
-    groupMarkers();
+    groupMarkers(activeMarkers);
   } else {
     addAllSidebarContent();
   }
 });
 
-function groupMarkers() {
+function groupMarkers(groupMarkers) {
   // Remove all existing markers from the markerCluster object
   markerCluster.clearMarkers();
 
   // Add the updated markers to the markerCluster object
-  markerCluster.addMarkers(markers);
+  markerCluster.addMarkers(groupMarkers);
 }
 
 let sidebar = document.getElementById("sidebar");
-function addAllSidebarContent() {
+function addAllSidebarContent(actMarkers) {
   let sidebarContent = "";
-  sidebarContent = markers
+  sidebarContent = actMarkers
     .map(
       (marker) => `
   <div id="${marker.id}" class="content" style="cursor:pointer">
@@ -795,7 +797,8 @@ function addAllSidebarContent() {
   sidebar.innerHTML = sidebarContent;
   backSidebar.style.display = "none";
 }
-addAllSidebarContent();
+
+addAllSidebarContent(markers);
 var selectedMarker = null;
 
 var svgIcon = {
@@ -902,17 +905,45 @@ window.onclick = function (event) {
   }
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var select = document.getElementById("my-select");
-select.addEventListener("change", function() {
+select.addEventListener("change", function () {
   var selectedCategory = this.value;
-  
-  for (var i = 0; i < markers.length; i++) {
-    var marker = markers[i];
-    
-    if (selectedCategory === "all" || marker.category.split(',').indexOf(selectedCategory) > -1) {
-      marker.setVisible(true);
+  console.log(selectedCategory);
+  markers.forEach(function (marker) {
+    console.log(marker.category);
+    if (selectedCategory === "all" || marker.category.toLowerCase().trim().includes(selectedCategory.toLowerCase())) {
+      marker.setMap(map);
     } else {
-      marker.setVisible(false);
+      marker.setMap(null);
     }
-  }
+  });
+
+  activeMarkers = markers.filter(function (marker) {
+    return marker.map !== null && marker.map !== undefined;
+  });
+  console.log(activeMarkers);
+  groupMarkers(activeMarkers);
+  addAllSidebarContent(activeMarkers);
 });
+
+
