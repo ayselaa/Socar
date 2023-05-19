@@ -28,7 +28,7 @@
   .go-location{
     text-decoration: none;
     color: black;
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-weight: 600;
   }
 
@@ -74,20 +74,9 @@
 }
 
 
-
-
-@media (max-width: 59em) {
-  #my-select{
-    width: 99.4% !important;
-  }
-}
-
-
-
-
 .form-select:focus {
   outline: none;
-  border-color: #ced4da; 
+  border-color: #ced4da; /* istediğiniz renk kodunu kullanabilirsiniz */
   box-shadow: none;
 }
 .form-select option:hover,

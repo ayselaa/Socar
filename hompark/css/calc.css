@@ -1,9 +1,7 @@
 form.calc {
   background: #f9f9f9;
-  border: 1px solid #a6a7aa;
   padding: 19px 3px;
   margin: 0 0 30px 0;
-  border: #a5d27f solid 0.2rem;
 }
 
 form.calc fieldset {
@@ -31,20 +29,23 @@ form.calc fieldset.buttons {
 form.calc label {
   color: #000;
   float: left;
+  font-weight: 600;
 }
 
 form.calc label em {
   color: #636466;
+  font-weight: 300;
 }
 
 form.calc input {
   background: none repeat scroll 0% 0% rgb(255, 255, 255);
-  width: 180px;
-  height: 32px;
+  width: 210px;
+  height: 45px;
   line-height: 32px;
   border: 1px solid rgb(211, 211, 211);
   padding: 0px 10px;
   float: right;
+  border-radius: 10px;
 }
 
 form.calc input.rb {
@@ -58,15 +59,16 @@ form.calc input.rb {
 }
 
 form.calc input.submit {
-  background: #d0d2d3;
-  width: 90px;
-  height: 26px;
-  line-height: 26px;
-  border: 1px solid #a6a7aa;
-  color: #fff;
-  text-align: center;
-  margin: 0 0 0 30px;
+  padding: 16px;
+  background-color: rgb(0, 0, 0);
+  color: white;
   cursor: pointer;
+  transition: all 200ms ease-in-out;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15rem;
+  line-height: 1;
 }
 
 form.calc input.submit:hover {
@@ -74,11 +76,11 @@ form.calc input.submit:hover {
 }
 
 form.calc input.vypocitat {
-  background: #a5d27f;
 }
 
 form.calc input.vypocitat:hover {
-  background: #91bd6b;
+  background-color: rgb(0 0 0 / 6%);
+  color: rgb(0, 0, 0);
 }
 
 h2.vysledky {
@@ -93,6 +95,15 @@ h2.vysledky {
 .vysledky .line {
   padding: 6px 10px;
   padding-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+    text-align: center;
+  align-items: center;
+}
+
+.flex-calc{
+  display: flex;
+  flex-direction: column;
 }
 
 .vysledky hr {
@@ -119,6 +130,11 @@ ul.calc-switch {
   height: 26px;
   padding: 0;
   margin: 0;
+}
+
+.calc-flex{
+  display: flex !important;
+  justify-content: space-between !important;
 }
 
 ul.calc-switch li a {
@@ -148,4 +164,68 @@ ul.calc-switch li a.cng_active {
     text-align: center;
     align-items: center;
   }
+  .calc{
+    width: 70% !important;
+  }
+
+  .vysledky{
+    width: 70% !important;
+  }
 }
+
+@media (max-width: 680px) {
+  .d-flex-class{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+  .calc{
+    width: 100% !important;
+  }
+
+  .vysledky{
+    width: 100% !important;
+  }
+  .calc-buttons{
+    display: flex !important;
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .d-flex-class{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+  .calc{
+    width: 100% !important;
+  }
+
+  .vysledky{
+    width: 100% !important;
+  }
+  .calc-buttons{
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .calc-flex{
+    display: flex !important;
+    flex-direction: column !important;
+    text-align: left;
+  }
+
+  .vysledky .line{
+    padding: 0 !important;
+  }
+}
+
+
+
+
+

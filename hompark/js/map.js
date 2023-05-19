@@ -774,7 +774,6 @@ function groupMarkers(groupMarkers) {
   // Add the updated markers to the markerCluster object
   markerCluster.addMarkers(groupMarkers);
 }
-
 let sidebar = document.getElementById("sidebar");
 function addAllSidebarContent(actMarkers) {
   let sidebarContent = "";
@@ -808,6 +807,7 @@ var svgIcon = {
   origin: new google.maps.Point(0, 0),
   anchor: new google.maps.Point(25, 50),
 };
+
 function clickSideBarItems() {
   // add event listeners to sidebar items
   document.querySelectorAll(".content").forEach((el) => {

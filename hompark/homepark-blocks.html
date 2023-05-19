@@ -205,8 +205,8 @@
           </li>
           <li><a href="#">Media</a>
             <ul>
-              <li><a href="apartment-one-room.html">Foto qalereya</a></li>
-              <li><a href="apartment-two-rooms.html">Video qalereya</a></li>
+              <li><a href="allgallery.html">Foto qalereya</a></li>
+              <li><a href="video-gallery.html">Video qalereya</a></li>
               <li><a href="news.html">Xəbərlər</a></li>
             </ul>
           </li>
@@ -446,61 +446,88 @@
             enctype="text/plain"
             style="width: 50%"
           >
-            <fieldset class="first">
-              <label>Litrlə istehlak<br /><em>benzin / 100 km</em></label>
-              <input
-                type="text"
-                id="sp_benzin"
-                value="8,00"
-                onclick="if(this.value=='0') this.value=''"
-                onblur="if(this.value=='') this.value='0'"
-              /><br />
+            <fieldset class="first calc-flex">
+              <div class="flex-calc">
+                <label>Litrlə istehlak<br />
+                <em>benzin / 100 km</em></label>
+              </div>
+              <div class="flex-calc">
+                <input
+                  type="text"
+                  id="sp_benzin"
+                  value="8,00"
+                  onclick="if(this.value=='0') this.value=''"
+                  onblur="if(this.value=='') this.value='0'"
+                />
+              </div>
+
             </fieldset>
-            <fieldset>
-              <label>Hər litr üçün qiymət<br /><em>benzin</em></label>
-              <input
-                type="text"
-                id="cena_benzin"
-                value="0,90"
-                onclick="if(this.value=='0') this.value=''"
-                onblur="if(this.value=='') this.value='0'"
-              /><br />
+            <fieldset class="calc-flex">
+              <div class="flex-calc">
+                <label>Hər litr üçün qiymət<br />
+                  <em>benzin</em></label>
+              </div>
+              <div class="flex-calc">
+                <input
+                  type="text"
+                  id="cena_benzin"
+                  value="0,90"
+                  onclick="if(this.value=='0') this.value=''"
+                  onblur="if(this.value=='') this.value='0'"
+                /><br />
+              </div>
             </fieldset>
-            <fieldset>
-              <label>m3 üçün istehlak<br /><em>CNG / 100 km</em></label>
-              <input
+            <fieldset class="calc-flex">
+              <div class="flex-calc">
+                <label>m3 üçün istehlak<br /><em>CNG / 100 km</em></label>
+                
+              </div>
+              <div class="flex-calc">
+                <input
                 type="text"
                 id="sp_cng"
                 value="5,00"
                 onclick="if(this.value=='0') this.value=''"
                 onblur="if(this.value=='') this.value='0'"
               /><br />
+              </div>
+            
             </fieldset>
-            <fieldset>
-              <label
+            <fieldset class="calc-flex">
+              <div class="flex-calc">
+                <label
                 >Hər 1 m3 Cng üçün qiymət<br /><em
-                  >Hər 1 m3 Cng üçün qiymət</em
-                ></label
-              >
-              <input
-                type="text"
-                id="cena_cng"
-                value="0,45"
-                onclick="if(this.value=='0') this.value=''"
-                onblur="if(this.value=='') this.value='0'"
-              /><br />
+                    >Hər 1 m3 Cng üçün qiymət</em
+                  ></label
+                >
+              </div>
+              <div class="flex-calc">
+                <input
+                  type="text"
+                  id="cena_cng"
+                  value="0,45"
+                  onclick="if(this.value=='0') this.value=''"
+                  onblur="if(this.value=='') this.value='0'"
+                /><br />
+
+              </div>
+            
             </fieldset>
-            <fieldset>
-              <label>İllik sürülən km</label>
-              <input
-                type="text"
-                id="kilometry"
-                value="60 000"
-                onclick="if(this.value=='0') this.value=''"
-                onblur="if(this.value=='') this.value='0'"
-              /><br />
+            <fieldset class="calc-flex">
+              <div class="flex-calc">
+                <label>İllik sürülən km</label>
+              </div>
+              <div class="flex-calc">
+                <input
+                  type="text"
+                  id="kilometry"
+                  value="60 000"
+                  onclick="if(this.value=='0') this.value=''"
+                  onblur="if(this.value=='') this.value='0'"
+                /><br />
+              </div>
             </fieldset>
-            <fieldset class="last buttons">
+            <fieldset class="last buttons calc-buttons">
               <input
                 type="button"
                 class="submit vynulovat"
@@ -521,40 +548,78 @@
           <div class="vysledky" style="width: 50%;background: white;">
             <h2 class="vysledky">Nəticələr</h2>
             <div class="line">
-              <strong>Yanacaq qiyməti</strong
-              ><span class="vysledek cislo" id="benzin_rok">0</span><br />
-              <em>benzin, manat hər il </em
-              ><span class="vysledek">manat / il</span>
+              <div class="flex-calc">
+                <strong>Yanacaq qiyməti</strong>
+                <em>benzin, manat hər il</em>
+              </div>
+              <div class="flex-calc"> 
+             <span class="vysledek cislo" id="benzin_rok">0</span><br />
+             <span class="vysledek">manat / il</span>
+              </div>
             </div>
             <hr />
             <div class="line">
-              <strong>Yanacaq qiyməti</strong
-              ><span class="vysledek cislo" id="benzin_km">0,00</span><br />
-              <em>benzin, manat / km</em><span class="vysledek">manat / km</span>
+              <div class="flex-calc">
+                <strong>Yanacaq qiyməti</strong>
+                <em>benzin, manat / km</em>
+
+              </div>
+              <div class="flex-calc">
+                <span class="vysledek cislo" id="benzin_km">0,00</span><br />
+                <span class="vysledek">manat / km</span>
+
+              </div>
             </div>
             <hr />
             <div class="line">
-              <strong>Yanacaq qiyməti</strong
-              ><span class="vysledek cislo" id="cng_rok">0</span><br />
-              <em>CNG, manat hər il</em><span class="vysledek">manat / il</span>
+              <div class="flex-calc">
+                <strong>Yanacaq qiyməti</strong>
+                <em>CNG, manat hər il</em>
+                
+              </div>
+              <div class="flex-calc">
+                <span class="vysledek cislo" id="cng_rok">0</span><br />
+                <span class="vysledek">manat / il</span>
+
+              </div>
             </div>
             <hr />
             <div class="line">
-              <strong>Yanacaq qiyməti</strong
-              ><span class="vysledek cislo" id="cng_km">0,00</span><br />
-              <em>CNG, manat / km</em><span class="vysledek">manat / km</span>
+              <div class="flex-calc">
+                <strong>Yanacaq qiyməti</strong>
+                <em>CNG, manat / km</em>
+              </div>
+              <div class="flex-calc">
+                <span class="vysledek cislo" id="cng_km">0,00</span><br />
+                <span class="vysledek">manat / km</span>
+
+              </div>
             </div>
             <hr />
             <div class="grey line">
-              <strong>Qənaət</strong
-              ><span class="vysledek cislo" id="uspora_rok">0</span><br />
-              <em>manat hər il</em><span class="vysledek">manat / il</span>
+              <div class="flex-calc">
+                <strong>Qənaət</strong>
+                <em>manat hər il</em>
+                
+              </div>
+              <div class="flex-calc">
+                <span class="vysledek cislo" id="uspora_rok">0</span><br />
+                <span class="vysledek">manat / il</span>
+
+              </div>
             </div>
             <hr />
             <div class="grey line">
-              <strong>Qənaət</strong
-              ><span class="vysledek cislo" id="uspora_km">0,00</span><br />
-              <em>manat / km</em><span class="vysledek">manat / km</span>
+              <div class="flex-calc">
+                <strong>Qənaət</strong>
+                <em>manat / km</em>
+                
+              </div>
+              <div class="flex-calc">
+                <span class="vysledek cislo" id="uspora_km">0,00</span><br />
+                <span class="vysledek">manat / km</span>
+
+              </div>
             </div>
           </div>
         </div>
